@@ -1,30 +1,60 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
-    Formik,
-    FormikHelpers,
-    FormikProps,
-    Form,
-    Field,
-    FieldProps,
-  } from 'formik';
+    useFormik
+} from 'formik';
+import * as Yup from 'yup';
 
-/**
- * This is a feedback form for visitors to provide feedback on website pau85.github.io
- * @returns Feedback component
- */
+const FeedbackForm = React.lazy(() => import('./FeedbackForm'));
 
-const Feedback = () => {
+interface FeedbackFormValues {
+    name: string;
+    email: string;
+    feedback: string;
+}
 
+const initialValues: FeedbackFormValues = {
+    name: '',
+    email: '',
+    feedback: ''
+}
 
+const validationSchema = Yup.object({
+    email: Yup
+        .string()
+        .email('Enter a valid email')
+        .required('Email is required'),
+    name: Yup
+        .string()
+        .required('Name is required'),
+    feedback: Yup
+        .string()
+        .required('Feedback is required'),
+})
 
-  return (
-    <div>
-      <h1>Feedback</h1>
-    </div>
-  )
+const Feedback: React.FC<{}> = () => {
+    const formik = useFormik<FeedbackFormValues>({
+        initialValues,
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            alert(JSON.stringify(values, null, 2));
+        },
+    });
+
+    return (
+        <div>
+            <h1>Feedback</h1>
+            <Suspense fallback={<div>Loading...</div>}>
+                <FeedbackForm />
+            </Suspense>
+        </div>
+    )
 }
 
 export default Feedback;
 
 // Resources used for this component:
 // formik library for form - https://formik.org/docs/overview
+// https://create-react-app.dev/docs/code-splitting/
+//  - this was needed since there were a lot of libraries getting used and
+//    it was taking up too much space which will cause an issue with loading.
+//    This code splitting technique allows for the component to "lazy" load.

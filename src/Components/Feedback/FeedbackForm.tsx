@@ -1,0 +1,102 @@
+import React, { Suspense } from 'react';
+import {
+    Form,
+    Formik,
+    FormikHelpers,
+    FormikProps,
+  } from 'formik';
+import * as Yup from 'yup';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
+interface FeedbackFormValues {
+    name: string;
+    email: string;
+    feedback: string;
+  }
+
+const initialValues: FeedbackFormValues = {
+    name: '',
+    email: '',
+    feedback: ''
+}
+
+const validationSchema = Yup.object({
+    email: Yup
+    .string()
+    .email('Enter a valid email')
+    .required('Email is required'),
+    name: Yup
+    .string()
+    .required('Name is required'),
+    feedback: Yup
+    .string()
+    .required('Feedback is required'),
+})
+
+const FeedbackForm: React.FC<{}> = () => {
+  return (
+       <Formik 
+        initialValues={initialValues}
+        validationSchema={validationSchema} 
+        onSubmit={(
+                values: FeedbackFormValues, 
+                { setSubmitting }: FormikHelpers<FeedbackFormValues>
+            ) => {
+                alert(JSON.stringify(values, null, 2));
+                setSubmitting(false);
+            }}
+        >
+            {(props: FormikProps<FeedbackFormValues>) => (
+                <Form>
+                    <div>
+                        <TextField
+                            id="name"
+                            name="name"
+                            label="Name"
+                            type="text"
+                            onChange={props.handleChange}
+                            onBlur={props.handleBlur}
+                            value={props.values.name}
+                        />
+                    </div>
+                    <div>
+                        <TextField
+                            id="email"
+                            name="email"
+                            label="Email"
+                            type="text"
+                            onChange={props.handleChange}
+                            onBlur={props.handleBlur}
+                            value={props.values.email}
+
+                        />
+                    </div>
+                    <div>
+                        <TextField
+                            id="feedback"
+                            name="feedback"
+                            label="Feedback"
+                            type="text"
+                            onChange={props.handleChange}
+                            onBlur={props.handleBlur}
+                            value={props.values.feedback}
+                        />
+                    </div>
+                    <div>
+                        <Button color="primary" variant="contained" type="submit">Submit</Button>
+                    </div>
+                </Form>
+            )}
+       </Formik>
+  )
+}
+
+export default FeedbackForm;
+
+// Resources used for this component:
+// formik library for form - https://formik.org/docs/overview
+// https://create-react-app.dev/docs/code-splitting/ 
+//  - this was needed since there were a lot of libraries getting used and 
+//    it was taking up too much space which will cause an issue with loading. 
+//    This code splitting technique allows for the component to "lazy" load.
