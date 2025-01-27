@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Feedback from './Components/Feedback/Feedback';
 
 const LazyFeedBack = React.lazy(() => import('./Components/Feedback/Feedback'));
 
