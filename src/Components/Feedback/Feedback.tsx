@@ -3,6 +3,7 @@ import {
     useFormik
 } from 'formik';
 import * as Yup from 'yup';
+import './FeedbackForm.css';
 
 const FeedbackForm = React.lazy(() => import('./FeedbackForm'));
 
@@ -41,8 +42,7 @@ const Feedback: React.FC<{}> = () => {
     });
 
     return (
-        <div>
-            <h1>Feedback</h1>
+        <div className="feedback-form">
             <Suspense fallback={<div>Loading...</div>}>
                 <FeedbackForm />
             </Suspense>
