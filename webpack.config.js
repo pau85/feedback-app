@@ -4,8 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, 'build'),
+    filename: 'static/js/[name].[contenthash].js',
+    clean: true,
     chunkFilename: '[name].[contenthash].js',
     publicPath: '/',
   },
@@ -14,6 +15,13 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
       {
         test: /\.tsx?$/,
         use: 'babel-loader',
@@ -31,6 +39,7 @@ module.exports = {
       template: './public/index.html',
     }),
   ],
+  mode: 'production',
   optimization: {
     splitChunks: {
       chunks: 'all',
