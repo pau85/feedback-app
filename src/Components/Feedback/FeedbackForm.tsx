@@ -8,6 +8,7 @@ import {
 import * as Yup from 'yup';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import axios from 'axios';
 import './FeedbackForm.css';
 
 interface FeedbackFormValues {
@@ -36,6 +37,11 @@ const validationSchema = Yup.object({
 })
 
 const FeedbackForm: React.FC<{}> = () => {
+
+    // function handleOnClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+        
+    // }
+
     return (
         <div className="feedback-form-container">
             <div className="feedback-form-block">
@@ -56,8 +62,16 @@ const FeedbackForm: React.FC<{}> = () => {
                         values: FeedbackFormValues,
                         { setSubmitting }: FormikHelpers<FeedbackFormValues>
                     ) => {
-                        alert(JSON.stringify(values, null, 2));
-                        setSubmitting(false);
+                        axios.post('http://localhost:5000/submit-feedback', values)
+                            .then(response => {
+                                alert('Feedback submitted successfully');
+                            })
+                            .catch(error => {
+                                alert('Error submitting feedback');
+                            })
+                            .finally(() => {
+                                setSubmitting(false);
+                            });
                     }}
                 >
                     {(props: FormikProps<FeedbackFormValues>) => (

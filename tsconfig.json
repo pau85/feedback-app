@@ -1,15 +1,17 @@
 {
     "compilerOptions": {
       "target": "ES6",
-      "module": "esnext",
+      "module": "CommonJS",
       "lib": ["dom", "es2015", "es2017"],
       "jsx": "react",
       "strict": true,
       "moduleResolution": "node",
       "esModuleInterop": true,
       "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true
+      "forceConsistentCasingInFileNames": true,
+      "outDir": "./dist"
     },
-    "include": ["src"]
+    "include": ["src", "src/**/*.ts", "src/**/*.tsx", "server/**/*.tsx"],
+    "exclude": ["node_modules"]
   }
   
