@@ -42,7 +42,7 @@ module.exports = {
       statsFilename: 'stats.json', 
     }),
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: './index.html',
     }),
   ],
   mode: 'production',
