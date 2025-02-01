@@ -6,7 +6,7 @@ const LazyFeedBack = React.lazy(() => import('./Components/Feedback/Feedback'));
 const Router: React.FC = () =>{
   const basename = process.env.NODE_ENV === 'production' ? '/feedback-app' : '/';
   return (
-  <BrowserRouter basename="basename">
+  <BrowserRouter basename={basename}>
     <Routes>
       <Route path="/" element={<LazyFeedBack />} />
       <Route path="*" element={<Navigate to="/" />} />
