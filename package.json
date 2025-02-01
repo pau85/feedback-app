@@ -2,7 +2,6 @@
   "name": "feedback-app",
   "version": "1.0.0",
   "homepage": "https://pau85.github.io/feedback-app",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
@@ -10,9 +9,9 @@
     "deploy": "gh-pages -d dist"
   },
   "keywords": [],
-  "author": "",
+  "author": "Paulette Melchiori",
   "license": "ISC",
-  "description": "",
+  "description": "Feedback app for visitors to share their thoughts and suggestions.",
   "dependencies": {
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.1",
