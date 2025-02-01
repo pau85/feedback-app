@@ -5,6 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 console.log('Webpack config loaded');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 module.exports = {
   entry: './src/index.tsx',
   output: {
@@ -12,7 +14,7 @@ module.exports = {
     filename: '[name].[contenthash].js',
     clean: true,
     chunkFilename: '[name].[contenthash].js',
-    publicPath: '/feedback-app/',
+    publicPath: isProduction ? '/feedback-app' : '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -40,8 +42,8 @@ module.exports = {
   },
   plugins: [
     new BundleAnalyzerPlugin({
-      analyzerMode: 'disabled', 
-      generateStatsFile: true, 
+      analyzerMode: 'disabled',
+      generateStatsFile: true,
       statsFilename: 'stats.json',
       openAnalyzer: false,
     }),
@@ -53,7 +55,7 @@ module.exports = {
       chunkFilename: '[name].[contenthash].css',
     }),
   ],
-  mode: 'production',
+  mode: isProduction ? 'production' : 'development',
   optimization: {
     splitChunks: {
       chunks: 'all',
@@ -65,8 +67,6 @@ module.exports = {
     },
     compress: true,
     port: 9000,
-    historyApiFallback: {
-      index: '/feedback-app/',
-    },
+    historyApiFallback: true,
   },
 };

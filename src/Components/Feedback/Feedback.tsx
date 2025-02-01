@@ -3,7 +3,6 @@ import {
     useFormik
 } from 'formik';
 import * as Yup from 'yup';
-import './FeedbackForm.css';
 
 const FeedbackForm = React.lazy(() => import('./FeedbackForm'));
 

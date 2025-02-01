@@ -6,8 +6,8 @@ const LazyFeedBack = React.lazy(() => import('./Components/Feedback/Feedback'));
 const Router: React.FC = () => (
   <BrowserRouter basename="/">
     <Routes>
-      <Route path="/feedback" element={<LazyFeedBack />} />
-      <Route path="*" element={<Navigate to="/feedback" />} />
+      <Route path="/" element={<LazyFeedBack />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   </BrowserRouter>
 );
