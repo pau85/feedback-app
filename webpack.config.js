@@ -14,7 +14,7 @@ module.exports = {
     filename: '[name].[contenthash].js',
     clean: true,
     chunkFilename: '[name].[contenthash].js',
-    publicPath: isProduction ? '/feedback-app' : '/',
+    publicPath: isProduction ? '/feedback-app/' : '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
