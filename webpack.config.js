@@ -1,15 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'static/js/[name].[contenthash].js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash].js',
     clean: true,
     chunkFilename: '[name].[contenthash].js',
-    publicPath: '/',
+    publicPath: '/feedback-app/dist/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -30,7 +31,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
         exclude: /node_modules/,
       },
     ],
@@ -39,10 +40,15 @@ module.exports = {
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled', 
       generateStatsFile: true, 
-      statsFilename: 'stats.json', 
+      statsFilename: 'stats.json',
+      openAnalyzer: false,
     }),
     new HtmlWebpackPlugin({
       template: './index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[name].[contenthash].css',
     }),
   ],
   mode: 'production',
@@ -54,9 +60,12 @@ module.exports = {
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
+      publicPath: '/feedback-app/dist/',
     },
     compress: true,
     port: 9000,
-    historyApiFallback: true,
+    historyApiFallback: {
+      index: '/feedback-app/dist/',
+    },
   },
 };
