@@ -1,47 +1,47 @@
-.feedback-app body {
+body {
     font-family: Arial, sans-serif;
     background-color: #1C1C1C;
     margin: 0;
     padding: 0;
 }
 
-.feedback-app p {
+p {
     font-size: 20px;
     color: #D3D3D3;
     margin-top: 10px;
     padding-right: 50px;
 }
 
-.feedback-app .feedback-header {
+.feedback-header {
     text-align: center;
     margin-bottom: 20px;
     color: #D3D3D3;
 }
 
-.feedback-app .form-field {
+.form-field {
     padding: 15px;
 }
 
-.feedback-app .form-field input,
+.form-field input,
 .form-field textarea {
     color: #D3D3D3; /* Change the font color of the input and textarea text */
 }
 
-.feedback-app .form-field input::placeholder,
+.form-field input::placeholder,
 .form-field textarea::placeholder {
     color: #D3D3D3; /* Change the font color of the placeholder text */
 }
 
-.feedback-app .form-field label {
+.form-field label {
     color: #a09d9d;
 }
 
-.feedback-app .form-field-feedback {
+.form-field-feedback {
     width: 100%;
     height: auto;
 }
 
-.feedback-app .form-field-feedback input,
+.form-field-feedback input,
 .form-field-feedback textarea {
     width: 500px;
     height: 100px;
@@ -50,19 +50,19 @@
     color: #D3D3D3; /* Ensure the input and textarea text color is set */
 }
 
-.feedback-app .form-field-feedback input::placeholder,
+.form-field-feedback input::placeholder,
 .form-field-feedback textarea::placeholder {
     color: #D3D3D3; /* Ensure the placeholder text color is set */
 }
 
-.feedback-app .feedback-form-container {
+.feedback-form-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh; /* Full viewport height */
 }
 
-.feedback-app .feedback-form-block {
+.feedback-form-block {
     padding: 50px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -70,6 +70,6 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
 }
 
-.feedback-app .feedback-submit-button {
+.feedback-submit-button {
     padding-left: 25px;
 }

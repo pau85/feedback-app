@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+console.log('Webpack config loaded');
+
 module.exports = {
   entry: './src/index.tsx',
   output: {
@@ -10,7 +12,7 @@ module.exports = {
     filename: '[name].[contenthash].js',
     clean: true,
     chunkFilename: '[name].[contenthash].js',
-    publicPath: '/feedback-app/dist/',
+    publicPath: '/feedback-app/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -60,12 +62,11 @@ module.exports = {
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
-      publicPath: '/feedback-app/dist/',
     },
     compress: true,
     port: 9000,
     historyApiFallback: {
-      index: '/feedback-app/dist/',
+      index: '/feedback-app/',
     },
   },
 };
