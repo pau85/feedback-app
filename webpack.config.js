@@ -16,9 +16,9 @@ module.exports = {
     },
   },
   output: {
-    path: path.resolve(__dirname, ''),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: isProduction ? '/feedback-app/' : '/',
+    publicPath: '/',
   },
   module: {
     rules: [
