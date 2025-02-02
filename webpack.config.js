@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
-console.log('isProduction - webpack.config.js: ', isProduction)
+console.log('isProduction - webpack.config.js: ', isProduction);
 
 module.exports = {
   entry: './src/index.tsx',
@@ -18,19 +18,19 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: isProduction ? '/feedback-app/dist/' : '/',
+    publicPath: isProduction ? '/feedback-app/' : '/',
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         use: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -40,7 +40,7 @@ module.exports = {
           },
         ],
       },
-    ]
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -49,8 +49,8 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
-      chunkFilename: '[name].[contenthash].css'
-    })
+      chunkFilename: '[name].[contenthash].css',
+    }),
   ],
   devServer: {
     static: {
@@ -59,5 +59,5 @@ module.exports = {
     compress: true,
     port: 9000,
     historyApiFallback: true,
-  }
+  },
 };
