@@ -1,66 +1,49 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-console.log('Webpack config loaded');
-
-const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: './src/index.tsx',
+  devtool: 'source-map',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[contenthash].js',
-    clean: true,
-    chunkFilename: '[name].[contenthash].js',
-    publicPath: '/',
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-      {
         test: /\.tsx?$/,
         use: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
-    ],
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+    ]
   },
   plugins: [
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'disabled',
-      generateStatsFile: true,
-      statsFilename: 'stats.json',
-      openAnalyzer: false,
-    }),
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './index.html'
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
-      chunkFilename: '[name].[contenthash].css',
-    }),
+      chunkFilename: '[name].[contenthash].css'
+    })
   ],
-  mode: isProduction ? 'production' : 'development',
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
-  },
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
@@ -68,5 +51,5 @@ module.exports = {
     compress: true,
     port: 9000,
     historyApiFallback: true,
-  },
+  }
 };
