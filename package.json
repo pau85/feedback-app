@@ -11,6 +11,7 @@
   "keywords": [],
   "author": "Paulette Melchiori",
   "license": "ISC",
+  "private": false,
   "description": "Feedback app for visitors to share their thoughts and suggestions.",
   "dependencies": {
     "@emotion/react": "^11.14.0",
