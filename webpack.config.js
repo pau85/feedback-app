@@ -6,7 +6,11 @@ module.exports = {
   entry: './src/index.tsx',
   devtool: 'source-map',
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
+    alias: {
+      '@emotion/react': path.resolve(__dirname, 'node_modules/@emotion/react'),
+      '@emotion/styled': path.resolve(__dirname, 'node_modules/@emotion/styled'),
+    },
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
