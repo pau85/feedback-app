@@ -2,11 +2,17 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 
-const container = document.getElementById('root');
-const root = createRoot(container!); 
+const root =
+  document.getElementById('root');
 
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+if (root) {
+  const reactRoot = createRoot(root);
+
+  reactRoot.render(
+    <React.StrictMode>
+      <div className="project-container">
+        <App />
+      </div>
+    </React.StrictMode>
+  );
+}
