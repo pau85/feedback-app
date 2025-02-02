@@ -9,7 +9,7 @@ const Router: React.FC = () =>{
   <HashRouter basename={basename}>
     <Routes>
       <Route path="/" element={<LazyFeedBack />} />
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="/feedback-app" />} />
     </Routes>
   </HashRouter>
 );
