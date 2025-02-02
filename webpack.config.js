@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
+console.log('isProduction - webpack.config.js: ', isProduction)
 
 module.exports = {
   entry: './src/index.tsx',
@@ -59,3 +60,6 @@ module.exports = {
     historyApiFallback: true,
   }
 };
+
+console.log('output in webpack', module.exports.output)
+console.log('devServer in webpack', module.exports.devServer)
