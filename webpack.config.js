@@ -37,6 +37,9 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
+            options: {
+              publicPath: isProduction ? '/feedback-app/' : '/',
+            },
           },
         ],
       },
