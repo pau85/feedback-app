@@ -37,7 +37,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html'
+      template: './public/index.html'
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
@@ -46,7 +46,7 @@ module.exports = {
   ],
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, 'public'),
     },
     compress: true,
     port: 9000,
