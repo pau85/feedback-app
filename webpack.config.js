@@ -18,7 +18,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: isProduction ? '/feedback-app/' : '/',
+    publicPath: isProduction ? '/feedback-app/dist' : '/',
   },
   module: {
     rules: [
@@ -60,6 +60,3 @@ module.exports = {
     historyApiFallback: true,
   }
 };
-
-console.log('output in webpack', module.exports.output)
-console.log('devServer in webpack', module.exports.devServer)
