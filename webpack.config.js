@@ -18,7 +18,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/dist/', 
+    publicPath: isProduction ? '/feedback-app/' : '/', 
   },
   module: {
     rules: [
@@ -45,6 +45,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      publicPath: isProduction ? '/feedback-app/' : '/',
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
